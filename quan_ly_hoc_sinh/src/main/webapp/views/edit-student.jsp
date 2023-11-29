@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-lg-6">
             <h1 class="text-center text-danger">Sửa Thông tin học sinh </h1>
-            <form action="<%=request.getContextPath()%>/student?action=edit&id=${update.userId}" method="post">
+            <form action="<%=request.getContextPath()%>/student?action=update&id=${update.userId}" method="post">
                 <input type="hidden" name="id" value="${update.userId}">
                 <div class="form-group">
                     <label >Họ và Tên: </label>

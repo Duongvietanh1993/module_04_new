@@ -36,6 +36,11 @@ public class StudentController extends HttpServlet {
                 studentService.delete(studentIdDelete);
                 showList(request, response);
                 break;
+            case "search":
+
+                break;
+            case "soft":
+                break;
         }
     }
 

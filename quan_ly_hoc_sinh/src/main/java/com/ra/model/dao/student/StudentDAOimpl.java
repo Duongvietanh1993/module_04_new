@@ -73,14 +73,13 @@ public class StudentDAOimpl implements StudentDAO {
     @Override
     public Student findById(Integer id) {
         Connection connection = null;
-        Student students = new Student();
+        Student student = new Student();
         try {
             connection = ConnectionDB.openConnection();
             PreparedStatement pstm = connection.prepareStatement("SELECT * FROM student WHERE id = ?");
             pstm.setInt(1, id);
             ResultSet resultSet = pstm.executeQuery();
             while (resultSet.next()) {
-                Student student = new Student();
                 student.setUserId(resultSet.getInt("id"));
                 student.setUserName(resultSet.getString("name"));
                 student.setUserEmail(resultSet.getString("email"));
@@ -92,7 +91,7 @@ public class StudentDAOimpl implements StudentDAO {
         } finally {
             ConnectionDB.closeConnection(connection);
         }
-        return students;
+        return student;
     }
 
     @Override
@@ -110,5 +109,10 @@ public class StudentDAOimpl implements StudentDAO {
             ConnectionDB.closeConnection(connection);
         }
 
+    }
+
+    @Override
+    public List<Student> finByName(String name) {
+        return null;
     }
 }

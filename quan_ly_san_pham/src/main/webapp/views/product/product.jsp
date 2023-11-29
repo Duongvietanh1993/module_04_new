@@ -2,8 +2,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: SOC XINH
-  Date: 27/11/2023
-  Time: 16:13
+  Date: 28/11/2023
+  Time: 17:25
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,35 +12,34 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Danh Sách Học Sinh</h1>
-<a href="student?action=create"> ADD</a>
-<table >
+<h3>Sản phẩm</h3>
+<a href="product?action=create"> ADD</a>
+<a href="category">Danh Mục</a>
+<a href="product">Sản Phẩm</a>
+<table border="1" cellspacing="0">
     <thead>
     <tr>
         <th>STT</th>
         <th>ID</th>
         <th>NAME</th>
-        <th>EMAIL</th>
-        <th>BIRTHDAY</th>
-        <th>ADDRESS</th>
-        <td>STATUS</td>
+        <th>PRICE</th>
+        <th>CATAGORY</th>
 
         <td colspan="2">Action</td>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${list}" var="item" varStatus="loop">
+    <c:forEach items="${productList}" var="item" varStatus="loop">
         <tr>
             <td>${loop.index+1}</td>
-            <td>${item.userId}</td>
-            <td>${item.userName}</td>
-            <td>${item.userEmail}</td>
-            <td>${item.userBirthday}</td>
-            <td>${item.userAddress}</td>
+            <td>${item.productId}</td>
+            <td>${item.productName}</td>
+            <td>${item.price}</td>
+            <td>${item.category.categoryName}</td>
             <td>
-                <a href="student?action=update&id=${item.userId}">Edit</a>
+                <a href="?action=update&id=${item.productId}">Edit</a>
                 <a onclick="return confirm('ban co chac chan muon xoa khong?')"
-                   href="student?action=delete&id=${item.userId}">Delete</a>
+                   href="?action=delete&id=${item.productId}">Delete</a>
             </td>
         </tr>
     </c:forEach>
