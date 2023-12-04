@@ -58,6 +58,9 @@
                <td>${item.studentName}</td>
                <td>${item.age}</td>
                <td>${item.sex}</td>
+               <td>
+                   <a class="btn btn-primary" href="edit/${item.studentCode}">edit</a>
+               </td>
            </tr>
        </c:forEach>
 

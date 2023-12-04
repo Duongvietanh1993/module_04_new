@@ -2,7 +2,7 @@ package ra.demo.model.dao.customer;
 
 import org.springframework.stereotype.Component;
 import ra.demo.model.entity.Customer;
-import ra.demo.until.ConnectionDB;
+import ra.demo.until.ConnectionDatabase;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -19,7 +19,7 @@ public class CustomerDAOimpl implements CustomerDAO {
         List<Customer> customers = new ArrayList<>();
 
         try {
-            connection = ConnectionDB.openConnection();
+            connection = ConnectionDatabase.openConnection();
             CallableStatement callableStatement = connection.prepareCall("{CALL PROC_SHOW_CUSTOMER()}");
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
@@ -33,7 +33,7 @@ public class CustomerDAOimpl implements CustomerDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionDatabase.closeConnection(connection);
         }
 
         return customers;
@@ -42,7 +42,7 @@ public class CustomerDAOimpl implements CustomerDAO {
     @Override
     public boolean saveOrUpdate(Customer customer) {
         Connection connection = null;
-        connection = ConnectionDB.openConnection();
+        connection = ConnectionDatabase.openConnection();
         int check;
         try {
             if (customer.getCustomerId() == 0) {
@@ -65,7 +65,7 @@ public class CustomerDAOimpl implements CustomerDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionDatabase.closeConnection(connection);
         }
         return false;
     }
@@ -74,7 +74,7 @@ public class CustomerDAOimpl implements CustomerDAO {
     public Customer findById(Integer integer) {
         Connection connection = null;
         Customer customer = new Customer();
-        connection = ConnectionDB.openConnection();
+        connection = ConnectionDatabase.openConnection();
         try {
             CallableStatement callableStatement = connection.prepareCall("{CALL PROC_FIND_CUSTOMER(?)}");
             callableStatement.setInt(1, integer);
@@ -88,7 +88,7 @@ public class CustomerDAOimpl implements CustomerDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionDatabase.closeConnection(connection);
         }
 
         return customer;
@@ -98,7 +98,7 @@ public class CustomerDAOimpl implements CustomerDAO {
     public List<Customer> findByName(String name) {
         Connection connection = null;
         List<Customer> customers = new ArrayList<>();
-        connection = ConnectionDB.openConnection();
+        connection = ConnectionDatabase.openConnection();
         try {
             CallableStatement callableStatement = connection.prepareCall("{CALL PROC_FIND_CUSTOMER(?)}");
             callableStatement.setString(1, name);
@@ -114,7 +114,7 @@ public class CustomerDAOimpl implements CustomerDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            ConnectionDB.closeConnection(connection);
+            ConnectionDatabase.closeConnection(connection);
         }
 
         return customers;
